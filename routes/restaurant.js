@@ -1,14 +1,10 @@
 const { Router } = require('express');
+const { informacionRestaurante } = require('../controllers/restaurant.controller')
 
 const router = Router();
 
 //Registro
-router.get('/informacion-restaurante', (request,response)=>{
-  return response.json({
-    ok: true,
-    msg: 'Crear comentario'
-  })
-})
+router.get('/informacion-restaurante', informacionRestaurante);
 
 //ver comentarios
 router.put('/modificar-restaurante', (request,response)=>{

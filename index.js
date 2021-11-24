@@ -22,7 +22,8 @@ app.use('/api/solicitudes', require('./routes/questions'));
 app.use('/api/servicios', require('./routes/services'));
 app.use('/api/platos',require('./routes/dishes'));
 app.use('/api/comentarios', require('./routes/comments'));
-app.use('/api/empleados', require('./routes/comments'));
+app.use('/api/empleados', require('./routes/employees'));
+app.use('/api/restaurante', require('./routes/restaurant'));
 
 app.listen( process.env.PORT, ()=> {
   console.log(`Server Running in port ${ process.env.PORT }`)
