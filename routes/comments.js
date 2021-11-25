@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const { listaComentarios } = require('../controllers/comments.controller')
 
 const router = Router();
 
@@ -11,12 +12,7 @@ router.post('/nuevo-comentario', (request,response)=>{
 })
 
 //ver comentarios
-router.get('/ver-comentarios', (request,response)=>{
-  return response.json({
-    ok: true,
-    msg: 'ver comentarios'
-  })
-})
+router.get('/ver-comentarios', listaComentarios);
 
 
 //Ver comentario

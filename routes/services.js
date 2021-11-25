@@ -1,5 +1,4 @@
 const { Router } = require('express');
-const Servicio = require('../models/Servicio');
 const { listaServicio } = require('../controllers/services.controller')
 
 const router = Router();
