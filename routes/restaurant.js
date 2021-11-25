@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { informacionRestaurante } = require('../controllers/restaurant.controller')
+const { informacionRestaurante, actualizarInformacion } = require('../controllers/restaurant.controller')
 
 const router = Router();
 
@@ -7,11 +7,6 @@ const router = Router();
 router.get('/informacion-restaurante', informacionRestaurante);
 
 //ver comentarios
-router.put('/modificar-restaurante', (request,response)=>{
-  return response.json({
-    ok: true,
-    msg: 'ver Restaurante'
-  })
-})
+router.put('/modificar-restaurante', actualizarInformacion);
 
 module.exports = router;

@@ -23,6 +23,30 @@ const informacionRestaurante =async (req,res= response)=>{
   }
 }
 
+const actualizarInformacion = async(req,res = response)=>{
+
+  try{
+    let info = req.body;
+    console.log(info);
+    // let temp = await Restaurante.find();
+    
+    if( info ){
+      return res.status(200).json({
+        ok: true,
+        info: info
+      })
+    }
+    
+  }catch(error){
+    console.log(error);
+    return res.status(500).json({
+      ok: false,
+      msg: 'Contacte con el administrador del sistema'
+    })
+  }
+}
+
 module.exports = {
-  informacionRestaurante
+  informacionRestaurante,
+  actualizarInformacion
 }
