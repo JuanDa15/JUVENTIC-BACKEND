@@ -27,13 +27,15 @@ const actualizarInformacion = async(req,res = response)=>{
 
   try{
     let info = req.body;
+
+    
     console.log(info);
     // let temp = await Restaurante.find();
     
     if( info ){
       return res.status(200).json({
         ok: true,
-        info: info
+        msg: 'Actualizado correctamente'
       })
     }
     
