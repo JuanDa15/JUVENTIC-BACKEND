@@ -1,9 +1,12 @@
 const { Router } = require('express');
+const Servicio = require('../models/Servicio');
+const { listaServicio } = require('../controllers/services.controller')
 
 const router = Router();
 
 // Crear servicio
 router.post('/nuevo-servicio', (request,response)=>{
+
   return response.json({
     ok: true,
     msg: 'Crear servicio'
@@ -27,12 +30,7 @@ router.delete('/eliminar-servicio/:id', (request,response)=>{
 })
 
 // Ver servicios
-router.get('/ver-servicios', (request,response)=>{
-  return response.json({
-    ok: true,
-    msg: 'ver servicios'
-  })
-})
+router.get('/ver-servicios', listaServicio);
 
 // Ver servicios
 router.get('/ver-servicio', (request,response)=>{

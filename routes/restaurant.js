@@ -10,7 +10,7 @@ router.get('/informacion-restaurante', informacionRestaurante);
 router.put('/modificar-restaurante', (request,response)=>{
   return response.json({
     ok: true,
-    msg: 'ver comentarios'
+    msg: 'ver Restaurante'
   })
 })
 
