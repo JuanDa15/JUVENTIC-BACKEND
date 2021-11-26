@@ -28,9 +28,9 @@ const actualizarInformacion = async(req,res = response)=>{
   try{
     let info = req.body;
 
+    let temp = await Restaurante.findOneAndUpdate({},info);
+
     
-    console.log(info);
-    // let temp = await Restaurante.find();
     
     if( info ){
       return res.status(200).json({

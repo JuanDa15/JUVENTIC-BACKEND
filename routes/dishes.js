@@ -1,42 +1,18 @@
 const { Router } = require('express');
+const { agregarPlato, listarPlatos, eliminarPlato,VerPlato,EditarPlato} = require('../controllers/dishes.controller')
 
 const router = Router();
 
 // Agregar
-router.post('/nuevo-plato', (request,response) => {
-  return response.json({
-    ok:true,
-    msg: 'Crear plato'
-  })
-})
+router.post('/nuevo-plato', agregarPlato)
 
 // Editar
-router.put('/editar-plato/:id', (request,response) => {
-  return response.json({
-    ok:true,
-    msg: 'Editar plato'
-  })
-})
+router.put('/editar-plato/:id',EditarPlato )
 // Eliminar
-router.delete('/eliminar-plato/:id', (request,response) => {
-  return response.json({
-    ok:true,
-    msg: 'eliminar plato'
-  })
-})
+router.delete('/eliminar-plato/:id', eliminarPlato);
 // Listar platos
-router.get('/ver-platos', (request,response) => {
-  return response.json({
-    ok:true,
-    msg: 'ver platos platos'
-  })
-})
+router.get('/ver-platos', listarPlatos);
 // Ver plato
-router.get('/ver-plato:/id', (request,response) => {
-  return response.json({
-    ok:true,
-    msg: 'ver plato'
-  })
-})
+router.get('/ver-plato/:id', VerPlato);
 
 module.exports = router;
