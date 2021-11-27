@@ -1,15 +1,10 @@
 const { Router } = require('express');
-const { listaComentarios } = require('../controllers/comments.controller')
+const { listaComentarios, crearComentario } = require('../controllers/comments.controller')
 
 const router = Router();
 
 //Registro
-router.post('/nuevo-comentario', (request,response)=>{
-  return response.json({
-    ok: true,
-    msg: 'Crear comentario'
-  })
-})
+router.post('/nuevo-comentario', crearComentario)
 
 //ver comentarios
 router.get('/ver-comentarios', listaComentarios);

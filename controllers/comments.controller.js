@@ -1,6 +1,25 @@
 const { response } = require('express');
 const Comentario = require('../models/Comentario');
 
+
+const crearComentario = async(req,res=response) =>{
+  try{
+    let info = req.body;
+    let temp = new Comentario(info);
+    await temp.save();
+    return res.json({
+      ok:true,
+      msg: 'Creado correctamente'
+    })
+  }catch(error){
+    console.log(error);
+    return res.status(500).json({
+      ok: false,
+      msg: 'Contacte con el administrador del sistema'
+    })
+  }
+}
+
 const listaComentarios = async (req,res=response)=>{
 
   try{
@@ -34,5 +53,6 @@ const listaComentarios = async (req,res=response)=>{
 }
 
 module.exports = {
-  listaComentarios
+  listaComentarios,
+  crearComentario
 }
