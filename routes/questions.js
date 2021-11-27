@@ -94,4 +94,23 @@ router.put('/modificar-solicitud/:id', async (req,res) => {
     })
   }})
 
+  //
+  router.get('/ver-solicitudesCliente/:email', async(request, response) => {
+    try{
+      let email = request.params.email;
+      let temp = await Solicitud.find({email: email}, {_id: 0,__v:0});
+      return response.status(200).json({
+        ok: true,
+        info:temp
+      })
+  
+    }catch(error){
+      console.log(error);
+      return response.status(500).json({
+        ok: false,
+        msg: 'Contacte con el administrador del sistema'
+      })
+    }
+  })
+
 module.exports = router;
