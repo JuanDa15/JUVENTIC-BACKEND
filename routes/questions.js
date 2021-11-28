@@ -45,7 +45,7 @@ router.get('/ver-solicitudes', async(request, response) => {
 router.get('/ver-solicitud/:id', async (req,res) => {
   try{
     let id = req.params.id;
-    let temp = await Solicitud.find({id:id},{_id:0,__v:0});
+    let temp = await Solicitud.findOne({id:id},{_id:0,__v:0});
     return res.json({
       ok:true,
       info: temp
