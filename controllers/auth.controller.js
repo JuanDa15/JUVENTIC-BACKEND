@@ -6,7 +6,7 @@ const crearUsuario = async (request, response = response) => {
 
   const User = require('../models/User')
 
-  const { id, name, role, userName, password } = request.body
+  const { id, name, role, userName, password, email } = request.body
 
   try {
     let usuario = await User.findOne({ userName: userName })
@@ -16,7 +16,7 @@ const crearUsuario = async (request, response = response) => {
       let newUser = new User(request.body)
       const salt = bcrypt.genSaltSync()
       newUser.password = bcrypt.hashSync(password, salt)
-      const token = await generarjtw(id, role)
+      const token = await generarjtw(id, role, email)
       await newUser.save()
       return response.status(200).json({ ok: true, msg: 'Usuario creado correctamente', id: newUser.id, userName: newUser.userName, token: token })
     }

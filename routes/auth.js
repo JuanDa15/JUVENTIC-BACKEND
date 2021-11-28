@@ -17,7 +17,6 @@ router.post('/ingresar', async (request, response) => {
   try {
 
     const tmp = request.body
-    console.log(tmp)
 
     const currentUser = await User.findOne({ userName: tmp.correo })
     if (!currentUser) {
@@ -28,7 +27,7 @@ router.post('/ingresar', async (request, response) => {
       if (!verificacion) {
         return response.status(400).json({ ok: false, msg: 'La contraseña es incorrecta' })
       } else {
-        const token = await generarjtw(currentUser.id, currentUser.role)
+        const token = await generarjtw(currentUser.id, currentUser.role, currentUser.email)
         return response.status(200).json({ ok: true, msg: 'Inicio de seccion correcto', token: token })
       }
     }
