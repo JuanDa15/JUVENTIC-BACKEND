@@ -12,6 +12,10 @@ const ComentarioSchema = Schema({
   clientID: {
     type: Number,
     required: true
+  },
+  correo:{
+    type:String,
+    required: true
   }
 })
 

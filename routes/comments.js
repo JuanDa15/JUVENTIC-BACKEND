@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { listaComentarios, crearComentario } = require('../controllers/comments.controller')
+const { listaComentarios, crearComentario, listaComentariosEmail, eliminarComentario } = require('../controllers/comments.controller')
 
 const router = Router();
 
@@ -9,22 +9,11 @@ router.post('/nuevo-comentario', crearComentario)
 //ver comentarios
 router.get('/ver-comentarios', listaComentarios);
 
-
-//Ver comentario
-router.get( '/ver-comentario/:id', (request,response)=>{
-  return response.json({
-    ok: true,
-    msg: 'ver comentario'
-  })
-})
+//Listar comentarios email
+router.get('/ver-comentarios-email/',listaComentariosEmail);
 
 //Eliminar comentario
-router.get( '/eliminar-comentario/:id', (request,response)=>{
-  return response.json({
-    ok: true,
-    msg: 'eliminar comentario'
-  })
-})
+router.delete('/eliminar-comentario/:id', eliminarComentario);
 
 
 
