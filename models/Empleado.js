@@ -15,7 +15,7 @@ const EmpleadoSchema = Schema({
   },
   image: {
     type: String,
-    required: false
+    required: true
   }
 })
 
