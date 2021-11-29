@@ -21,7 +21,13 @@ router.post('/nuevo-empleado', async (request, response) => {
 })
 
 //editar empleado
-router.put('/editar-empleado/:id', (request, response) => {
+router.put('/editar-empleado/:id', async (request, response) => {
+  try {
+    await Empleado.updateOne({ id: request.params.id }, request.body)
+  } catch (e) {
+    console.log(e)
+    return response.status(500).json({ ok: false, msg: 'Contacte con el admin' })
+  }
   return response.json({
     ok: true,
     msg: 'editar empleado'
@@ -40,10 +46,12 @@ router.delete('/eliminar-empleado/:id', async (request, response) => {
 })
 
 //ver  empleado
-router.get('/ver-empleado/:id', (request, response) => {
+router.get('/ver-empleado/:id', async (request, response) => {
+  const empleado = await Empleado.findOne({ id: request.params.id })
   return response.json({
     ok: true,
-    msg: 'ver empleado'
+    msg: 'ver empleado',
+    empleado: empleado
   })
 })
 
