@@ -1,11 +1,11 @@
-const {Schema, model} = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const EmpleadoSchema = Schema({
-  id:{
+  id: {
     type: Number,
-    required:true
+    required: true
   },
-  name:{
+  name: {
     type: String,
     required: true
   },
@@ -13,11 +13,11 @@ const EmpleadoSchema = Schema({
     type: String,
     required: true
   },
-  image:{
+  image: {
     type: String,
-    required:true
+    required: false
   }
 })
 
 
-module.exports = model('Empleado',EmpleadoSchema)
+module.exports = model('Empleado', EmpleadoSchema)

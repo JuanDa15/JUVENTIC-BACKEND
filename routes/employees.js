@@ -4,11 +4,20 @@ const router = Router();
 const Empleado = require('../models/Empleado')
 
 //nuevo empleado
-router.post('/nuevo-empleado', (request, response) => {
-  return response.json({
-    ok: true,
-    msg: 'Crear empleado'
-  })
+router.post('/nuevo-empleado', async (request, response) => {
+  try {
+    const usuario = await Empleado.findOne({ name: request.body.name })
+    if (usuario) {
+      return response.status(400).json({ ok: false, msg: 'El empleado ya existe' })
+    } else {
+      let newEmployee = new Empleado(request.body)
+      await newEmployee.save()
+      return response.status(200).json({ ok: true, msg: 'Empleado registrado correctamente', id: newEmployee.id, name: newEmployee.name, des: newEmployee.description })
+    }
+  } catch (e) {
+    console.log(e)
+    return response.status(500).json({ ok: false, msg: 'Contacte con el admin' })
+  }
 })
 
 //editar empleado
