@@ -20,7 +20,6 @@ router.post('/ingresar', async (request, response) => {
 
     const currentUser = await User.findOne({ userName: tmp.correo })
     if (!currentUser) {
-      console.log('funciona')
       return response.status(400).json({ ok: false, msg: 'El usuario no esta registrado' })
     } else {
       const verificacion = bcrypt.compareSync(tmp.password, currentUser.password)
