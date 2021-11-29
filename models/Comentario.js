@@ -13,7 +13,7 @@ const ComentarioSchema = Schema({
     type: Number,
     required: true
   },
-  correo:{
+  email:{
     type:String,
     required: true
   },
