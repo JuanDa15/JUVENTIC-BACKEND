@@ -16,6 +16,10 @@ const ComentarioSchema = Schema({
   correo:{
     type:String,
     required: true
+  },
+  img:{
+    type: String,
+    required: true
   }
 })
 
