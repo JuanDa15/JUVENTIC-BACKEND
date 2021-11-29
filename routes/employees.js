@@ -1,9 +1,10 @@
 const { Router } = require('express');
-
 const router = Router();
 
+const Empleado = require('../models/Empleado')
+
 //nuevo empleado
-router.post('/nuevo-empleado', (request,response)=>{
+router.post('/nuevo-empleado', (request, response) => {
   return response.json({
     ok: true,
     msg: 'Crear empleado'
@@ -11,7 +12,7 @@ router.post('/nuevo-empleado', (request,response)=>{
 })
 
 //editar empleado
-router.put('/editar-empleado/:id', (request,response)=>{
+router.put('/editar-empleado/:id', (request, response) => {
   return response.json({
     ok: true,
     msg: 'editar empleado'
@@ -20,7 +21,9 @@ router.put('/editar-empleado/:id', (request,response)=>{
 
 
 //eliminar empleado
-router.delete( '/eliminar-empleado/:id', (request,response)=>{
+router.delete('/eliminar-empleado/:id', async (request, response) => {
+  await Empleado.findByIdAndDelete(request.params.id)
+  console.log(request.body.token)
   return response.json({
     ok: true,
     msg: 'eliminar empleado'
@@ -28,7 +31,7 @@ router.delete( '/eliminar-empleado/:id', (request,response)=>{
 })
 
 //ver  empleado
-router.get( '/ver-empleado/:id', (request,response)=>{
+router.get('/ver-empleado/:id', (request, response) => {
   return response.json({
     ok: true,
     msg: 'ver empleado'
@@ -36,10 +39,12 @@ router.get( '/ver-empleado/:id', (request,response)=>{
 })
 
 //ver  empleado
-router.get( '/ver-empleados', (request,response)=>{
+router.get('/ver-empleados', async (request, response) => {
+  const empleados = await Empleado.find()
   return response.json({
     ok: true,
-    msg: 'ver empleados'
+    msg: 'ver empleados',
+    empleados: empleados
   })
 })
 
