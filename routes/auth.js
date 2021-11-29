@@ -26,7 +26,7 @@ router.post('/ingresar', async (request, response) => {
       if (!verificacion) {
         return response.status(400).json({ ok: false, msg: 'La contraseña es incorrecta' })
       } else {
-        const token = await generarjtw(currentUser.id, currentUser.role, currentUser.email)
+        const token = await generarjtw(currentUser.id, currentUser.role, currentUser.email, currentUser.image)
         return response.status(200).json({ ok: true, msg: 'Inicio de seccion correcto', token: token })
       }
     }
@@ -45,8 +45,8 @@ router.post('/ingresar', async (request, response) => {
 
 //Validación JWT
 router.get('/renovar', validarjwt, async (request, response) => {
-  const { userId, role } = request
-  const token = await generarjtw(userId, role)
+  const { userId, role, email, image } = request
+  const token = await generarjtw(userId, role, email, image)
   return response.status(200).json({ ok: true, msg: 'ok', token: token })
 })
 
