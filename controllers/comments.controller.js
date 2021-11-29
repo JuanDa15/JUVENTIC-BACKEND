@@ -52,7 +52,26 @@ const listaComentarios = async (req,res=response)=>{
   }
 }
 
+const eliminarComentarios = async(req,res=response)=>{
+  try{
+    let comentarios = await Comentario.find();
+    let id = req.params.id;
+    let temp = await comentario.findOneAndDelete({id: id});
+    return res.json({
+      ok:true,
+      msg: 'Eliminado correctamente'
+    })
+  }catch(error){
+    console.log(error);
+    return res.status(500).json({
+      ok: false,
+      msg: 'Contacte con el administrador del sistema'
+    })
+  }
+}
+
 module.exports = {
   listaComentarios,
-  crearComentario
+  crearComentario,
+  eliminarComentarios
 }
